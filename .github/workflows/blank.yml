@@ -34,15 +34,15 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-      - name: Get IP address
-        run: |
-          ip addr show
           
-      - name: Find Docker Host IP
-        uses: addnab/docker-run-action@v1
-        with:
-          image: alpine:latest
-          run: apk update > /dev/null && apk add iproute2 > /dev/null && ip -4 route show default | cut -d' ' -f3
+      - name: test
+        run: curl https://api.ipify.org
+          
+#       - name: Find Docker Host IP
+#         uses: addnab/docker-run-action@v1
+#         with:
+#           image: alpine:latest
+#           run: apk update > /dev/null && apk add iproute2 > /dev/null && ip -4 route show default | cut -d' ' -f3
           
 #       - name: Get action ip range
 #         env:
