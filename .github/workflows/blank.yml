@@ -37,3 +37,7 @@ jobs:
       - name: Get IP address
         run: |
           ip addr show
+          
+      - name: Get action ip range
+        run : |
+          gh api -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /meta
