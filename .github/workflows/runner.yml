@@ -1,0 +1,14 @@
+name: Self-Hosted Runner
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: self-hosted
+    
+    steps:
+    
+      - name: Get IP address
+        run: |
+          echo "test"
