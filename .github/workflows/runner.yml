@@ -1,7 +1,12 @@
 name: Self-Hosted Runner
 
 on:
-  workflow_dispatch:
+ 
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -9,6 +14,12 @@ jobs:
     
     steps:
     
-      - name: Get IP address
+      - name: test
         run: |
           echo "test"
+          
+      - name: test1
+        run: |
+          uname -m
+          
+      
