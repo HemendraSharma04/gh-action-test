@@ -1,28 +1,28 @@
-name: Self-Hosted Runner
+# name: Self-Hosted Runner
 
-on:
+# on:
  
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+#   # Triggers the workflow on push or pull request events but only for the "main" branch
+#   push:
+#     branches: [ "main" ]
+#   pull_request:
+#     branches: [ "main" ]
 
-jobs:
-  build:
-    runs-on: self-hosted
+# jobs:
+#   build:
+#     runs-on: self-hosted
     
-    steps:
+#     steps:
     
-      - name: test
-        run: |
-          echo "test"
+#       - name: test
+#         run: |
+#           echo "test"
           
-      - name: test1
-        run: |
-          uname -m
+#       - name: test1
+#         run: |
+#           uname -m
           
-      - name: 🔎 Check IP
-        run: curl https://api.ipify.org
+#       - name: 🔎 Check IP
+#         run: curl https://api.ipify.org
           
       
