@@ -22,8 +22,7 @@ jobs:
         run: |
           uname -m
           
-      - name: Get IP address
-        run: |
-          echo "Runner IP address: ${{ runner.ip }}"
+      - name: 🔎 Check IP
+        run: curl https://api.ipify.org
           
       
