@@ -38,8 +38,14 @@ jobs:
         run: |
           ip addr show
           
-      - name: Get action ip range
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run : |
-          gh api -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /meta
+      - name: Find Docker Host IP
+        uses: addnab/docker-run-action@v1
+        with:
+          image: alpine:latest
+          run: apk update > /dev/null && apk add iproute2 > /dev/null && ip -4 route show default | cut -d' ' -f3
+          
+#       - name: Get action ip range
+#         env:
+#           GH_TOKEN: ${{ github.token }}
+#         run : |
+#           gh api -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /meta
