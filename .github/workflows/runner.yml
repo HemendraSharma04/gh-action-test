@@ -22,4 +22,8 @@ jobs:
         run: |
           uname -m
           
+      - name: Get IP address
+        run: |
+          echo "Runner IP address: ${{ runner.ip }}"
+          
       
