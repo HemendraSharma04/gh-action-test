@@ -1,13 +1,21 @@
 name: 'ghactiontest'
-description: 'Greet someone and record the time'
+description: 'Greet someone, record the time, and run Slither Analysis'
+
 inputs:
   name-to-greet:  # id of input
     description: 'Who to greet'
     required: true
     default: 'World'
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+
 runs:
-  using: 'node16'
-  main: 'dist/index.js'
+  using: 'composite'  # This allows you to run multiple commands or actions
+  steps:
+    # Step 1: Run the Greet Action (your custom Node.js code)
+    - name: Run Greet Script
+      run: |
+        node dist/index.js
+      shell: bash
+
+    # Step 2: Run Slither Analysis using another GitHub Action
+    - name: Run Slither Analysis
+      uses: crytic/slither-action@v0.4.0
