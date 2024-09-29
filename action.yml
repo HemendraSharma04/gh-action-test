@@ -1,21 +1,22 @@
 name: 'ghactiontest'
 description: 'Greet someone, record the time, and run Slither Analysis'
-
 inputs:
-  name-to-greet:  # id of input
+  name-to-greet:
     description: 'Who to greet'
     required: true
     default: 'World'
-
 runs:
-  using: 'composite'  # This allows you to run multiple commands or actions
+  using: 'composite'
   steps:
-    # Step 1: Run the Greet Action (your custom Node.js code)
     - name: Run Greet Script
       run: |
-        node dist/index.js
+        node dist/index.js "${{ inputs.name-to-greet }}"
       shell: bash
-
-    # Step 2: Run Slither Analysis using another GitHub Action
+    - name: Record Time
+      run: echo "Current time is $(date)" >> $GITHUB_OUTPUT
+      shell: bash
     - name: Run Slither Analysis
       uses: crytic/slither-action@v0.4.0
+      with:
+        target: 'contracts/'  # Specify the directory containing your Solidity files
+        sarif: results.sarif
