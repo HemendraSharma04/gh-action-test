@@ -1,22 +1,23 @@
-name: 'ghactiontest'
-description: 'Greet someone, record the time, and run Slither Analysis'
+name: 'Custom Action with Slither'
+description: 'Run custom Node.js code and Slither analysis'
 inputs:
   name-to-greet:
     description: 'Who to greet'
     required: true
     default: 'World'
+  slither-target:
+    description: 'Target directory or file for Slither analysis'
+    required: false
+    default: '.'
 runs:
-  using: 'composite'
+  using: "composite"
   steps:
-    - name: Run Greet Script
-      run: |
-        node dist/index.js "${{ inputs.name-to-greet }}"
+    - name: Run custom Node.js code
+      run: node ${{ github.action_path }}/index.js "${{ inputs.name-to-greet }}"
       shell: bash
-    - name: Record Time
-      run: echo "Current time is $(date)" >> $GITHUB_OUTPUT
-      shell: bash
+
     - name: Run Slither Analysis
-      uses: crytic/slither-action@v0.4.0
+      uses: crytic/slither-action@v0.3.0
       with:
-        target: 'contracts/'  # Specify the directory containing your Solidity files
+        target: ${{ inputs.slither-target }}
         sarif: results.sarif
