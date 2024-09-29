@@ -1,4 +1,4 @@
-name: 'Hello World'
+name: 'ghactiontest'
 description: 'Greet someone and record the time'
 inputs:
   name-to-greet:  # id of input
